@@ -13,6 +13,10 @@ import Card from "../components/card"
 import Colors from "../constants/colors"
 import Input from "../components/input"
 import Number from "../components/numberContainer"
+import BodyText from "../components/bodyText"
+import TitleText from "../components/titleText"
+
+
 
 const StartGame = (props) => {
     const [enteredValue, setEnteredValue] = useState('')
@@ -41,9 +45,9 @@ const StartGame = (props) => {
     let confirmedOuput
     if(confirmed){
         confirmedOuput= <Card style={styles.confirmCard}> 
-            <Text>You Selected</Text>
+            <Text style={styles.selctedTxt}>You Selected</Text>
             <Number>{selectedNumber}</Number>
-            <Button title="Start Game" onPress={()=>{}} color={Colors.primary}/>
+            <Button title="Start Game" onPress={()=>{props.onStartGame(selectedNumber)}} color={Colors.primary}/>
             </Card>
     }
     return (
@@ -53,16 +57,14 @@ const StartGame = (props) => {
             <View style={
                 styles.screen
             }>
-                <Text style={
-                    styles.title
-                }>
+                <TitleText style={styles.title}>
                     Start a New Game
-                </Text>
+                </TitleText>
                 {/* <View style={styles.inputContainer}> */}
                 <Card style={
                     styles.inputContainer
                 }>
-                    <Text>Select a Number</Text>
+                    <BodyText>Select a Number</BodyText>
                     <Input style={
                             styles.input
                         }
@@ -117,9 +119,9 @@ const styles = StyleSheet.create({
         marginTop: 15
     },
     title: {
-        fontSize: 20,
-        marginVertical: 10
-
+        fontSize: 19,
+        marginVertical: 25,
+fontFamily: 'open-sans-bold'
     },
     inputContainer: {
         width: 300,
@@ -146,6 +148,17 @@ const styles = StyleSheet.create({
     selectedNumber:{
         fontSize: 20
 
-    }
+    },
+    selectNotxt:{
+        fontFamily: 'open-sans',
+        fontSize:16
+    },
+    selctedTxt:{
+        fontFamily: 'open-sans',
+        fontSize:16
+    },
+    // startGameTxt:{
+    //     marginVertical:20
+    // }
 })
 export default StartGame

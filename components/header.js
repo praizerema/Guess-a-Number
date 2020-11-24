@@ -22,7 +22,8 @@ header:{
 },
 headerTitle:{
     fontSize: 18,
-    color: "black"
+    color: "#fff",
+    fontFamily:'open-sans-bold'
 }
 })
 export default  Header
