@@ -15,6 +15,7 @@ import Input from "../components/input"
 import Number from "../components/numberContainer"
 import BodyText from "../components/bodyText"
 import TitleText from "../components/titleText"
+import CustomButton from "../components/customButton"
 
 
 
@@ -34,7 +35,7 @@ const StartGame = (props) => {
     const confirmInputHandler = () => {
         const chosenNumber = parseInt(enteredValue)
         if (isNaN(chosenNumber) || chosenNumber <= 0 || chosenNumber > 99) { //use isNaN() instead of the equality check
-            Alert.alert("Invalid Number", "Number has to be anumber between 0 and 99.", [{text: 'okay',style: 'destructive', onPress: resetInputHandler}])
+            Alert.alert("Invalid Number", "Number has to be a number between 1 and 99.", [{text: 'okay',style: 'destructive', onPress: resetInputHandler}])
             return
         }
         setConfirmed(true)
@@ -47,7 +48,8 @@ const StartGame = (props) => {
         confirmedOuput= <Card style={styles.confirmCard}> 
             <Text style={styles.selctedTxt}>You Selected</Text>
             <Number>{selectedNumber}</Number>
-            <Button title="Start Game" onPress={()=>{props.onStartGame(selectedNumber)}} color={Colors.primary}/>
+            <CustomButton  onPress={()=>{props.onStartGame(selectedNumber)}}><Text>START GAME</Text></CustomButton>
+            {/* <Button title="Start Game" onPress={()=>{props.onStartGame(selectedNumber)}} color={Colors.primary}/> */}
             </Card>
     }
     return (

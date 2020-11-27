@@ -2,6 +2,7 @@ import React from "react";
 import {Text, View, Button, StyleSheet, Image} from "react-native"
 import BodyText from "../components/bodyText";
 import Colors from "../constants/colors"
+import CustomButton from "../components/customButton"
 
 import DefaultStyles from  "../constants/defaultStyle"
 
@@ -16,8 +17,8 @@ return <View style={styles.screen}>
     </BodyText>
 </View>
     
-
-      <Button title="NEW GAME" onPress={props.onRestart} />
+<CustomButton style={styles.button} onPress={props.onRestart} ><Text>NEW GAME</Text></CustomButton>
+      {/* <Button title="NEW GAME" onPress={props.onRestart} /> */}
 </View>
 }
 const styles = StyleSheet.create({
@@ -39,6 +40,9 @@ resultText:{
     textAlign:"center",
     fontSize: 18
 
+},
+button:{
+    backgroundColor: "green"
 }
 // gameOverTxt:{
 //     fontFamily: "open-sans",
