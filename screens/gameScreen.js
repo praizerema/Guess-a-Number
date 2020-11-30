@@ -5,7 +5,8 @@ import {
     StyleSheet,
     Button,
     Alert,
-    ScrollView
+    ScrollView,
+    FlatList
 } from "react-native"
 import NumberContainer from "../components/numberContainer"
 import Card from "../components/card"
@@ -34,7 +35,7 @@ const renderListItem= (value, noOfRound)=>(
 const GameScreen = (props) => {
     const [initialGuess, setInitialGuess] = useState(generateRandomBetween(1, 100, props.userChoice))
     const [currentGuess, setCurrentGuess] = useState(initialGuess)
-    const [guessList, setGuessList] = useState([initialGuess])
+    const [guessList, setGuessList] = useState([initialGuess.toString()])
 
     const currentLow = useRef(1)
     const currentHigh = useRef(100)
@@ -60,7 +61,7 @@ const GameScreen = (props) => {
         const nextNum = generateRandomBetween(currentLow.current, currentHigh.current, currentGuess)
         setCurrentGuess(nextNum)
 
-setGuessList(currGuess =>[nextNum, ...currGuess])
+setGuessList(currGuess =>[nextNum.toString(), ...currGuess])
     }
     return (
         <View style={styles.screen}>
@@ -70,9 +71,7 @@ setGuessList(currGuess =>[nextNum, ...currGuess])
             <Card style={styles.btnContainer}>
                 <View style={styles.button}>
                 <CustomButton  onPress={moreGuessHandler.bind(this, "lower")}>
-    {/* <Text>
-    LOWER
-    </Text> */}
+  
     <Ionicons name="md-remove" size={24} color="white" />
 
 </CustomButton>
@@ -81,17 +80,15 @@ setGuessList(currGuess =>[nextNum, ...currGuess])
 
                 <View style={styles.button}>
 <CustomButton onPress={moreGuessHandler.bind(this, "greater")}>
-    {/* <Text>
-    HiGHER
-    </Text> */}
+  
     <Ionicons name="md-add" size={24} color="white" />
 
 </CustomButton>
                 </View>
             </Card>
-            <View style={styles.list}>
-            <ScrollView>{guessList.map((pastGuess, index) => renderListItem(pastGuess, guessList.length - index))}</ScrollView>
-
+            <View style={styles.listContainer}>
+            <ScrollView contentContainerStyle={styles.list}>{guessList.map((pastGuess, index) => renderListItem(pastGuess, guessList.length - index))}</ScrollView>
+{/* <FlatList keyExtractor={(item)=> item} contentContainerStyle={styles.list} data={guessList} renderItem={renderListItem.bind(this, guessList.length)}/> */}
             </View>
         </View>
     )
@@ -125,9 +122,15 @@ flexDirection: "row",
 padding:15,
 justifyContent: "space-around"
     },
-    list:{
+    listContainer:{
         flex: 1,
-        width:"80%"
+        width:"50%"
+    },
+    list:{
+        flexGrow: 1,
+
+    //   alignItems:"center"  
+    justifyContent:"flex-end"
     }
 })
 export default GameScreen
