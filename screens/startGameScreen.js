@@ -6,7 +6,9 @@ import {
     Button,
     TouchableWithoutFeedback,
     Keyboard,
-    Alert
+    Alert,
+    ScrollView,
+    KeyboardAvoidingView
     /*Keyboard is an API provided by react native, Alert is an object to call a native api*/
 } from "react-native"
 import Card from "../components/card"
@@ -53,6 +55,8 @@ const StartGame = (props) => {
             </Card>
     }
     return (
+        <ScrollView>   
+            <KeyboardAvoidingView behavior="padding" keyboardVerticalOffset={30}>     
         <TouchableWithoutFeedback onPress= {() => {
                                             Keyboard.dismiss();
                                             }}>
@@ -104,6 +108,8 @@ const StartGame = (props) => {
                 {confirmedOuput}
             </View>
         </TouchableWithoutFeedback>
+        </KeyboardAvoidingView>
+        </ScrollView>
     )
 }
 const styles = StyleSheet.create({
